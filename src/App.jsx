@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import NavBar from './components/global/NavBar'
 import './App.css'
+import { GrNext } from 'react-icons/gr'
 const App = () => {
+
+  const [open, setOpen] = useState(false);
+
+
+  const handleNavbar = ()=>{
+    setOpen(!open)
+  }
+
   return (
     <div className='flex min-h-screen'>
-      <nav className='md:relative absolute'>
-        <NavBar />
-      </nav>
-      <main className='flex-1 bg-amber-200/10 p-5 overflow-y-scroll max-h-screen '>
+      <div className={`md:hidden absolute -left-1.5 top-10 z-50 bg-emerald-800 rounded-md shadow-2xl shadow-black cursor-pointer ${open ? 'hidden' : 'block'} cursor-pointer`}>
+        <button
+          className="py-2  text-white"
+          onClick={handleNavbar}
+          aria-label="Toggle menu"
+        >
+          <GrNext size={24} />
+        </button>
+      </div>
+      
+        <NavBar  open={open} handleNavbar={handleNavbar} />
+    
+      <main className='flex-1 bg-amber-200/10  p-1 md:p-5 overflow-y-scroll max-h-screen '>
         <Outlet />
       </main>
     </div>

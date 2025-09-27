@@ -29,8 +29,9 @@ const menuItems = [
   { label: "Send Notification", icon: <FiBell />, path: "/send-notification" },
 ];
 
-const NavBar = () => {
-  const [open, setOpen] = useState(false);
+const NavBar = ({open , handleNavbar}) => {
+  console.log();
+  
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ const NavBar = () => {
 
   const navHandler = (path) => {
     navigate(path);
-    setOpen(false);
+   handleNavbar()
   };
 
   const handleLogout = async () => {
@@ -54,26 +55,14 @@ const NavBar = () => {
   };
 
   return (
-    <nav className={` z-50 relative ${!admin ? "hidden" : "block"}`}>
-      {/* Hamburger for mobile */}
-      <div className={`md:hidden absolute -left-1.5 top-10 z-50 bg-emerald-800 rounded-md shadow-2xl shadow-black cursor-pointer ${open ? 'hidden' : 'block'}`}>
-        <button
-          className="py-2  text-white"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          <GrNext size={24} />
-        </button>
-      </div>
-      {/* Sidebar */}
       <div
-        className={`md:static left-0 top-0 h-screen w-60 bg-gradient-to-br from-slate-900 text-white via-emerald-900 to-teal-900 transition-transform duration-300 z-40 ${
+        className={` left-0 top-0 h-screen w-60 bg-gradient-to-br from-slate-900 text-white via-emerald-900 to-teal-900 transition-transform duration-300 z-40 md:relative absolute ${
           open ? "translate-x-0 text-white" : "-translate-x-60 md:translate-x-0"
         }`}
       >
         <div className="flex flex-col h-full px-3 py-5 gap-6">
           <div className="font-bold text-xl mb-8 text-center">Admin Panel</div>
-         <div className=" absolute right-4 top-4 md:hidden" onClick={()=>{setOpen(!open)}}>
+         <div className=" absolute right-4 top-4 md:hidden" onClick={()=>{handleNavbar()}}>
            <CgClose size={24}  />
          </div>
           <ul className="flex-1 flex flex-col gap-3 overflow-y-scroll 2xl:overflow-hidden">
@@ -106,7 +95,7 @@ const NavBar = () => {
           </button>
         </div>
       </div>
-    </nav>
+   
   );
 };
 
