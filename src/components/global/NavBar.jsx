@@ -29,13 +29,11 @@ const menuItems = [
   { label: "Send Notification", icon: <FiBell />, path: "/send-notification" },
 ];
 
-const NavBar = ({open , handleNavbar}) => {
-  console.log();
+const NavBar = ({open , handleNavbar , admin}) => {
   
   const location = useLocation();
   const navigate = useNavigate();
 
-  const admin = JSON.parse(localStorage.getItem("admin"));
 
   const navHandler = (path) => {
     navigate(path);
@@ -58,7 +56,7 @@ const NavBar = ({open , handleNavbar}) => {
       <div
         className={` left-0 top-0 h-screen w-60 bg-gradient-to-br from-slate-900 text-white via-emerald-900 to-teal-900 transition-transform duration-300 z-40 md:relative absolute ${
           open ? "translate-x-0 text-white" : "-translate-x-60 md:translate-x-0"
-        }`}
+        } ${admin ? 'block' : 'hidden'}`}
       >
         <div className="flex flex-col h-full px-3 py-5 gap-6">
           <div className="font-bold text-xl mb-8 text-center">Admin Panel</div>
