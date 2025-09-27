@@ -26,7 +26,7 @@ const App = () => {
       
         <NavBar  open={open} handleNavbar={handleNavbar} />
     
-      <main className='flex-1 bg-amber-200/10  p-1 md:p-5 overflow-y-scroll max-h-screen '>
+      <main className='flex-1 bg-amber-200/10  px-1 py-5 md:p-5 overflow-y-scroll max-h-screen '>
         <Outlet />
       </main>
     </div>
