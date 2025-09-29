@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Create an axios instance with baseURL
 const API = axios.create({
@@ -108,10 +109,13 @@ export const getAllsuccessfulPaymentRecords = async()=>{
 export const getDashboardStatsData = async()=>{
   try {
     const response = await API.post('/admin/dashboardStatsData')
-    console.log(response);
-    
+    console.log(response , 'response fsdfg');
     return response.data.data
   } catch (error) {
+      if(error.status == 401){
+      localStorage.clear();
+      window.location.href = '/'
+    }
     console.log(error);
     
   }

@@ -45,7 +45,7 @@ const NavBar = ({open , handleNavbar , admin}) => {
       const logoutResponse = await logout();
       if (logoutResponse.statusCode === 200) {
         localStorage.clear();
-        navigate("/");
+        window.location.href = '/'
       }
     } catch (error) {
       console.log(error);
