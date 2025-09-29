@@ -23,17 +23,48 @@ const PrivateRoute = ({ element }) => {
 const routes = createBrowserRouter([
   {
     path: '/', 
-    element:<PrivateRoute element={<App />} />, 
+    element: <App />, 
     children: [
-      { path: 'dashboard', element: <Dashboard /> },
-        { path: 'pending-applications', element: <PendingApplication /> },
-        { path: 'rejected-applications', element: <RejectedApplication /> },
-        { path: 'all-booking', element: <AllBooking /> },
-        { path: 'revenue', element: <Revenue /> },
-        { path: 'all-consultants', element: <AllConsultants /> },
-        { path: 'all-users', element: <AllUsers /> },
-        { path: 'settings', element: <Settings /> },
-        { path: 'send-notification', element: <SendNotification /> }
+      {
+        path: '/', 
+        element: isLoggedIn() ? <Navigate to="/dashboard" /> : <SignIn />
+      },
+      {
+        path: '/dashboard', 
+        element: <PrivateRoute element={<Dashboard />} />
+      },
+      {
+        path: '/pending-applications', 
+        element: <PrivateRoute element={<PendingApplication />} />
+      },
+      {
+        path: '/rejected-applications', 
+        element: <PrivateRoute element={<RejectedApplication />} />
+      },
+      {
+        path: '/all-booking', 
+        element: <PrivateRoute element={<AllBooking />} />
+      },
+      {
+        path: '/revenue', 
+        element: <PrivateRoute element={<Revenue />} />
+      },
+      {
+        path: '/all-consultants', 
+        element: <PrivateRoute element={<AllConsultants />} />
+      },
+      {
+        path: '/all-users', 
+        element: <PrivateRoute element={<AllUsers />} />
+      },
+      {
+        path: '/settings', 
+        element: <PrivateRoute element={<Settings />} />
+      },
+      {
+        path: '/send-notification', 
+        element: <PrivateRoute element={<SendNotification />} />
+      }
     ]
   }
 ]);
