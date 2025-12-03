@@ -173,7 +173,9 @@ const ConsultantCard = ({ consultant, onApprove, onDelete }) => {
           <div><strong>Field of Study:</strong> {consultant.consultantRequest?.consultantProfile?.fieldOfStudy || "-"}</div>
           <div><strong>Languages:</strong> {(consultant.consultantRequest?.consultantProfile?.languages || consultant.languageProficiency || []).join(", ") || "-"}</div>
           <div><strong>Weekly Availability:</strong> {consultant.consultantRequest?.consultantProfile?.daysPerWeek || "-"}</div>
-          <div className="flex items-center gap-2"><strong>Aadhar Card:</strong><a target="_blanck" href={consultant?.kycVerify?.aadharURL}><FaIdCard className=" text-2xl text-green-800"/></a></div>
+          {consultant?.kycVerify?.aadharURL.map((link , i)=>(
+            <div className="flex items-center gap-2"><strong>Aadhar Card:</strong><a target="_blanck" href={link}><FaIdCard className=" text-2xl text-green-800"/></a></div>
+          ))}
           <div className="flex items-center gap-2"><strong>Pan Card:</strong><a target="_blanck" href={consultant?.kycVerify?.aadharURL}><FaIdCard className=" text-2xl text-green-800"/></a></div>
           <div className="flex items-center gap-2"><strong>Resume:</strong><a target="_blanck" href={consultant?.consultantRequest?.documents?.resume}><FaFilePdf className=" text-2xl text-green-800"/></a></div>
           {/* Add more details as needed */}

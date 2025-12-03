@@ -170,7 +170,16 @@ const ConsultantCard = ({
                   label="Aadhar Card"
                   value={
                     <ExternalLink
-                      href={consultant?.kycVerify?.aadharURL}
+                      href={consultant?.kycVerify?.aadharURL[0]}
+                      label="View Aadhar"
+                    />
+                  }
+                />
+                <Detail
+                  label="Aadhar Card"
+                  value={
+                    <ExternalLink
+                      href={consultant?.kycVerify?.aadharURL[1]}
                       label="View Aadhar"
                     />
                   }
@@ -311,6 +320,7 @@ const Detail = ({ label, value }) => (
 );
 
 const ExternalLink = ({ href, label }) => (
+  
   <a
     href={href}
     target="_blank"
